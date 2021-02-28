@@ -15,4 +15,4 @@ App Deployment
 6) Go to sign up and create an account as admin. The admin is set true in the db by default for testing purposes. But i reality, it should be set to false and updated when desired.
 7) Log in as admin and create/add events types.
 8) Go inside different event types you created and add your events.
-Accessment link: (https://github.com/AnyThingCodez/ik/tree/master)
+
