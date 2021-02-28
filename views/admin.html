@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/assets/images/favicon.png">
+   <title>Admin - Types</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/assets/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- This is for the animation CSS -->
+    <link href="/assets/assets/node_modules/aos/dist/aos.css" rel="stylesheet">
+    <link href="/assets/assets/node_modules/prism/prism.css" rel="stylesheet">
+    <link href="/assets/assets/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <link href="/assets/assets/node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/assets/css/portfolio/portfolio.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+	   <!-- All Jquery -->
+    <!-- ============================================================== -->
+   <script src="/assets/assets/node_modules/jquery/dist/jquery.min.js"></script>
+
+  	<!--<script src="/assets/js/angular-source.js"></script>
+    
+    <script src="/assets/js/ids.angular.js"></script>-->
+
+	<style type="text/css">
+		i {
+			font-size: 20px!important
+		}
+
+        .form-display {
+            margin: 20px auto;line-height: 45px
+        }
+
+	</style>
+</head>
+
+<body class="">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">My Events Guild</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Top header  -->
+        <!-- ============================================================== -->
+        <% include partials/nav2 %>
+        <!-- ============================================================== -->
+     
+      
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Static Slider 10  -->
+                <!-- ============================================================== -->
+                <!--<div class="banner-innerpage" style="background-image:url(/assets/assets/images/innerpage/banner-bg3.jpg)">
+                    <div class="container">
+                       
+                        <div class="row justify-content-center ">
+                            
+                            <div class="col-md-6 align-self-center text-center" data-aos="fade-down" data-aos-duration="1200">
+                                <h1 class="title">Building Ideas</h1>
+                                <h6 class="subtitle op-8"> Get some insight on the modern practices</h6> </div>
+                           
+                        </div>
+                    </div>
+                </div>-->
+                <!-- ============================================================== -->
+                <!-- End Static Slider 10  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Portfolio 1  -->
+                <!-- ============================================================== -->
+                <div class="spacer bg-light">
+                    <div class="container">                      
+                        <div class="m-t-40">
+                            <div class="p-2 row">
+                                <div class="col-md-4">
+                                    <!--<input type="text" name="" class="form-control" placeholder="Search" ng-model="search">-->
+                                    <h3>Event Types</h3>
+                                </div>
+                                <div class="col-md-8 text-right">
+                                    <button class="btn btn-success" data-toggle="modal" data-target="#addEventModal"><i class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+                            <div class="p-2">
+                            <div class="card p-2">
+                                <% for (var i = 0; i < evt.length; i++) { %>
+                                    <ul class="nav nav-tabs divider pt-2 pb-2" role="tablist"> 
+                                       
+                                        <li class="nav-item text-muted pt-2 pl-2" style="width: 73%">
+                                            <h4 class=""><%= evt[i].name %></h4>
+                                            <span class="text-muted"><%= evt[i].event_group.length + ' events'%></span>
+                                        </li>
+                                                                           
+
+                                        <li class="nav-item text-muted" style="width: 27%;">    
+
+                                            <!--<a href="" target="_blank" title="Report not available" class="round btn btn-secondary btn-sm" title="Report"><span><i class="fa fa-file-o"></i> </span></a>  &nbsp;&nbsp;&nbsp;-->
+
+                                            <a href="" target="_blank" data-toggle="modal" data-target="#editEventModal" title="Edit event type name" onclick="evtVal('<%= evt[i].name %>','<%= evt[i]._id %>')" class="round btn btn-success btn-sm" title="Report"><span><i class="fa fa-pencil"></i> </span></a>&nbsp;&nbsp;&nbsp;         
+
+                                            <a href="" target="_blank" data-toggle="modal" data-target="#delEventModal" onclick="delEventName('<%= evt[i].name %>', '<%= evt[i]._id %>')" title="Delete event type" class="round btn btn-success btn-sm"><i class="fa fa-trash-alt"></i> </a> &nbsp;&nbsp;&nbsp;
+
+                                            <a href="<%= '/auth/admin/events?id=' + evt[i]._id %>" title="View events" class="round btn btn-success btn-sm"><i class="fa fa-arrow-right"></i></a>
+
+                                          
+                                        </li>
+                                    </ul>
+                                <% } %>   
+                            </div>                   	   
+							
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Back to top -->
+            <!-- ============================================================== -->
+            <a class="bt-top btn btn-circle btn-lg btn-info" href="#top"><i class="ti-arrow-up"></i></a>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+       
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><b>Add Event Type</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/auth/admin/types" method="POST">
+                <div>
+                    
+                    <input type="text" name="name" class="form-control" placeholder="Event type name">
+                </div>
+          
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                </div>
+            </form>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+     <!-- Modal -->
+    <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><b>Edit Event Type Name</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+                <div>                    
+                    <input type="text" name="name" id="editInput" class="form-control" placeholder="Event type name">
+                </div>
+                 <div>                    
+                    <input type="text" name="id" class="form-control"  placeholder="Event type name" value="0000" style="visibility: hidden;">
+                 </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!--<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>-->
+            <button type="button" id="updateBtn" class="btn btn-success btn-sm">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="delEventModal" tabindex="-1" aria-labelledby="delEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Remove <b> <span id="evtName"></span></b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             <p class="text-center">You want to remove above event type?</p>
+          </div>
+          <form class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success btn-sm" id="delBtn">Remove</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+            var editInput = document.getElementById('editInput');
+          var evtName = document.getElementById('evtName');
+          var delBtn = document.getElementById('delBtn');
+          var updateBtn = document.getElementById('updateBtn');
+          var deleteValue;
+          var updateId;
+
+          function evtVal(str,id) {
+             editInput.value = str;
+             updateId = id;
+          }
+
+          function delEventName(str,id) {
+             evtName.innerHTML = str;
+             deleteValue = id;
+          }
+
+          updateBtn.addEventListener('click',function(){
+              var xhttp = new XMLHttpRequest();
+              var url = "/auth/admin/types?id=" + updateId + "&name=" + editInput.value;
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  var toJson = JSON.parse(this.responseText)
+                  if(toJson.status){
+                      window.location.href = "/auth/admin/types";
+                  } else {
+                      alert(this.responseText.message)
+                  }
+                }
+              };
+              xhttp.open("PUT",url, true);
+              xhttp.send();
+          },false)
+
+          delBtn.addEventListener('click',function(){
+              var xhttp = new XMLHttpRequest();
+              var url = "/auth/admin/types?id=" + deleteValue;
+              xhttp.onreadystatechange = function() {
+                if (this.readyState == 4 && this.status == 200) {
+                  var toJson = JSON.parse(this.responseText)
+                  if(toJson.status){
+                      window.location.href = "/auth/admin/types";
+                  } else {
+                      alert(this.responseText.message)
+                  }
+                }
+              };
+              xhttp.open("DELETE",url, true);
+              xhttp.send();
+          },false)
+    </script>
+
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="/assets/assets/node_modules/popper/dist/popper.min.js"></script>
+    <script src="/assets/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+    <!-- This is for the animation -->
+    <script src="/assets/assets/node_modules/aos/dist/aos.js"></script>
+    <script src="/assets/assets/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
+  	  <script src="/assets/js/custom.min.js"></script>
+    <script src="/assets/assets/node_modules/prism/prism.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+</body>
+
+
+</html>
+

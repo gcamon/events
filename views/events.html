@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/assets/images/favicon.png">
+   <title>Admin - Events</title>
+    <!-- Bootstrap Core CSS -->
+    <link href="/assets/assets/node_modules/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- This is for the animation CSS -->
+    <link href="/assets/assets/node_modules/aos/dist/aos.css" rel="stylesheet">
+    <link href="/assets/assets/node_modules/prism/prism.css" rel="stylesheet">
+    <link href="/assets/assets/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css" rel="stylesheet">
+    <!-- This page CSS -->
+    <link href="/assets/assets/node_modules/magnific-popup/dist/magnific-popup.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link href="/assets/css/portfolio/portfolio.css" rel="stylesheet">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+
+   <script src="/assets/assets/node_modules/jquery/dist/jquery.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+    <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+<![endif]-->
+
+	<style type="text/css">
+		i {
+			font-size: 20px!important
+		}
+
+        .form-display {
+            margin: 20px auto;line-height: 45px
+        }
+
+        .font_1-2 {
+            font-size: 18px
+        }
+
+        .border-bottom {
+            border-bottom: 1px solid grey;
+            padding-bottom: 10px
+        }
+
+	</style>
+</head>
+
+<body class="">
+    <!-- ============================================================== -->
+    <!-- Preloader - style you can find in spinners.css -->
+    <!-- ============================================================== -->
+    <div class="preloader">
+        <div class="loader">
+            <div class="loader__figure"></div>
+            <p class="loader__label">My Events Guild</p>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+    <!-- Main wrapper - style you can find in pages.scss -->
+    <!-- ============================================================== -->
+    <div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Top header  -->
+        <!-- ============================================================== -->
+        <% include partials/nav2 %>
+        <!-- ============================================================== -->
+     
+      
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper">
+            <!-- ============================================================== -->
+            <!-- Container fluid  -->
+            <!-- ============================================================== -->
+            <div class="container-fluid">
+                <!-- ============================================================== -->
+                <!-- Static Slider 10  -->
+                <!-- ============================================================== -->
+                <!--<div class="banner-innerpage" style="background-image:url(/assets/assets/images/innerpage/banner-bg3.jpg)">
+                    <div class="container">
+                       
+                        <div class="row justify-content-center ">
+                            
+                            <div class="col-md-6 align-self-center text-center" data-aos="fade-down" data-aos-duration="1200">
+                                <h1 class="title">Building Ideas</h1>
+                                <h6 class="subtitle op-8"> Get some insight on the modern practices</h6> </div>
+                           
+                        </div>
+                    </div>
+                </div>-->
+                <!-- ============================================================== -->
+                <!-- End Static Slider 10  -->
+                <!-- ============================================================== -->
+                <!-- ============================================================== -->
+                <!-- Portfolio 1  -->
+                <!-- ============================================================== -->
+                 <div class="spacer bg-light">
+                    <div class="container">                      
+                        <div class="m-t-40 row">
+                            <div class="col-md-2">
+                                <% for (var j = 0; j < types.length; j++) { %>
+                                    <div class="border-bottom">
+                                        <a href="<%= '/auth/admin/events?id=' + types[j]._id %>" class="<%= (types[j]._id === evt._id) ? 'text-success font_1-2' : 'text-muted font_1-2' %>"><%= types[j].name %></a>
+                                    </div>
+                                <% } %>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="p-2 row">
+                                    <div class="col-md-4">
+                                        <!--<input type="text" name="" class="form-control" placeholder="Search" ng-model="search">-->
+                                        <h3><%= evt.name %></h3>
+                                    </div>
+                                    <div class="col-md-8 text-right">
+                                        <button class="btn btn-success" data-toggle="modal" data-target="#addEventModal"><i class="fa fa-plus"></i></button>
+                                    </div>
+                                </div>
+                                <div class="p-2">
+                                <% for (var i = 0; i < evt.event_group.length; i++) { %>
+                                    <div class="col-md-10">
+                                        <div class="card p-2">
+                                            <div>
+                                                <h4><%= evt.event_group[i].name %></h4>
+                                                <h5><%= evt.event_group[i].description %></h5>
+                                                <time><%= moment(evt.event_group[i].date).format("MMMM Do YYYY") %></time><br>
+                                                <a href="" data-toggle="modal" data-target="#subEventModal" onclick="subscriptions('<%= evt.event_group[i].name %>','<%= evt.event_group[i]._id %>')"><b><%= evt.event_group[i].subscriptions.length %> Subscribers</b></a>
+                                            </div>
+                                            <footer style="text-align: right;">
+                                                <a href="" onclick="editEvent('<%= evt.event_group[i].name %>','<%= evt.event_group[i]._id %>','<%= evt.event_group[i].description %>','<%= evt.event_group[i].date %>','<%= evt._id %>')" data-toggle="modal" data-target="#editEventModal"><i class="fa fa-pencil"></i></a>&nbsp;&nbsp;
+                                                <a href="" onclick="delEventName('<%= evt.event_group[i].name %>','<%= evt.event_group[i]._id %>', '<%= evt._id %>')" data-toggle="modal" data-target="#delEventModal"><i class="fa fa-trash-alt"></i></a>
+                                            </footer>
+                                        </div>
+                                    </div>
+                                <% } %>                      
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+            <!-- ============================================================== -->
+            <!-- End Container fluid  -->
+            <!-- ============================================================== -->
+            <!-- ============================================================== -->
+            <!-- Back to top -->
+            <!-- ============================================================== -->
+            <a class="bt-top btn btn-circle btn-lg btn-info" href="#top"><i class="ti-arrow-up"></i></a>
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- footer -->
+        <!-- ============================================================== -->
+       
+        <!-- ============================================================== -->
+        <!-- End footer -->
+        <!-- ============================================================== -->
+    </div>
+
+    <!-- modal -->
+    <div class="modal fade" id="addEventModal" tabindex="-1" aria-labelledby="addEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><b>Add Event</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form action="/auth/admin/events" method="POST">
+                <div class="mb-2">                    
+                    <input type="text" name="name" class="form-control" value="<%= evt.name %>">
+                </div>
+
+                 <div class="mb-2">                    
+                    <textarea type="text" name="description" class="form-control" placeholder="Enter event description"></textarea>
+                </div>
+
+                <div class="mb-2">                    
+                    <input type="date" name="date" class="form-control" placeholder="Enter event date">
+                </div>
+
+                <div style="visibility: hidden;">                    
+                    <input type="text" name="id" value="<%=  evt._id %>">
+                </div>
+          
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success btn-sm">Save</button>
+                </div>
+            </form>
+          </div>
+        
+        </div>
+      </div>
+    </div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="editEventModal" tabindex="-1" aria-labelledby="editEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><b>Edit Event</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+                <div>                    
+                    <input type="text" name="name" id="editName" class="form-control"  placeholder="Event name">
+                </div>
+                <div>                    
+                    <input type="text" name="description" id="editDescription" class="form-control" placeholder="Event description">
+                </div>
+                <div>                    
+                    <input type="date" name="date" id="editDate" class="form-control" placeholder="Event date">
+                </div>
+                <div>                    
+                    <input type="text" name="id" class="form-control"  placeholder="Event type name" style="visibility: hidden;">
+                </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <!--<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>-->
+            <button type="button" id="updateBtn" class="btn btn-success btn-sm">Update</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+      <!-- Modal -->
+    <div class="modal fade" id="delEventModal" tabindex="-1" aria-labelledby="delEventModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Remove <b> <span id="evtName"></span></b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+             <p class="text-center">You want to remove above event?</p>
+          </div>
+          <form class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-success btn-sm" id="delBtn">Remove</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+       <!-- Modal -->
+    <div class="modal fade" id="subEventModal" tabindex="-1" aria-labelledby="subModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><b> <span id="evtNameSub"></span> Subscriptions</b></h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="users">
+          </div>
+          <form class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+
+     <script type="text/javascript">
+        var editName = document.getElementById('editName');
+        var editDescription = document.getElementById('editDescription');
+        var editDate = document.getElementById('editDate');
+        var evtName = document.getElementById('evtName');
+        var sub = document.getElementById('evtNameSub');
+        var delBtn = document.getElementById('delBtn');
+        var updateBtn = document.getElementById('updateBtn');
+        var usersDiv = document.getElementById('users');
+        var deleteValue;
+        var updateId;
+        var typeId;
+
+        var div;
+        var h4;
+        var address;
+        var time;
+        var span;
+        var br;
+
+
+        function editEvent(str,id,description,date,tId) {
+           editName.value = str;
+           editDescription.value = description;
+           editDate.value = date;
+           updateId = id;
+           typeId = tId
+        }
+
+        function delEventName(str,id,tId) {
+           evtName.innerHTML = str;
+           deleteValue = id;
+           typeId = tId;
+        }
+
+        function subscriptions(str,evtId) {
+            sub.innerHTML = str;
+            var xhttp = new XMLHttpRequest();
+            var url = "/auth/admin/get-subscriptions?id=" + evtId;
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                var toJson = JSON.parse(this.responseText)
+                if(toJson.status){
+                    console.log(toJson)//window.location.href = "/auth/admin/events?id=" + typeId;
+                    toJson.sub.forEach(function(item){
+                        div = document.createElement('div');
+                        h4 = document.createElement('h5');
+                        address = document.createElement('address');
+                        time = document.createElement('time');
+                        span = document.createElement('span');
+                        br = document.createElement('br');
+
+                        address.style.paddingBottom = 0;
+                        address.style.marginBottom = 0;
+                        div.style.marginBottom = "20px";
+
+                        h4.innerHTML = item.name;
+                        address.innerHTML = item.address;
+                        time.innerHTML = item.created;
+                        span.innerHTML = item.email;
+                        div.appendChild(h4)
+                        div.appendChild(address)
+                        div.appendChild(time)
+                        div.appendChild(br)
+                        div.appendChild(span)
+                        usersDiv.appendChild(div)
+                    })
+                } else {
+                    alert(this.responseText.message)
+                }
+              }
+            };
+            xhttp.open("GET",url, true);
+            xhttp.send();
+        }
+
+        updateBtn.addEventListener('click',function(){
+            var xhttp = new XMLHttpRequest();
+            var url = "/auth/admin/events?id=" + updateId + "&name=" + editName.value 
+            + "&description=" + editDescription.value + "&date=" + editDate.value;
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                var toJson = JSON.parse(this.responseText)
+                if(toJson.status){
+                    window.location.href = "/auth/admin/events?id=" + typeId;
+                } else {
+                    alert(this.responseText.message)
+                }
+              }
+            };
+            xhttp.open("PUT",url, true);
+            xhttp.send();
+        },false)
+
+        delBtn.addEventListener('click',function(){
+            var xhttp = new XMLHttpRequest();
+            var url = "/auth/admin/events?id=" + deleteValue;
+            xhttp.onreadystatechange = function() {
+              if (this.readyState == 4 && this.status == 200) {
+                var toJson = JSON.parse(this.responseText)
+                if(toJson.status){
+                    window.location.href = "/auth/admin/events?id=" + typeId;
+                } else {
+                    alert(this.responseText.message)
+                }
+              }
+            };
+            xhttp.open("DELETE",url, true);
+            xhttp.send();
+        },false)
+
+    </script>
+
+
+   
+    <!-- ============================================================== -->
+    <!-- End Wrapper -->
+    <!-- ============================================================== -->
+    <!-- ============================================================== -->
+ 
+    <!-- Bootstrap popper Core JavaScript -->
+    <script src="/assets/assets/node_modules/popper/dist/popper.min.js"></script>
+    <script src="/assets/assets/node_modules/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- custom js -->
+    <script src="/assets/js/client.js"></script>
+    <!-- This is for the animation -->
+    <script src="/assets/assets/node_modules/aos/dist/aos.js"></script>
+    <script src="/assets/assets/node_modules/perfect-scrollbar/dist/js/perfect-scrollbar.jquery.min.js"></script>
+  
+  	  <script src="/assets/js/custom.min.js"></script>
+    <script src="/assets/assets/node_modules/prism/prism.js"></script>
+    <!-- ============================================================== -->
+    <!-- This page plugins -->
+    <!-- ============================================================== -->
+</body>
+
+
+</html>
+
